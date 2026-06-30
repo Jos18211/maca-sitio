@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Revisá y ajustá tu cotización de servicios de Taller MACA en Desamparados, Alajuela, y enviá tus datos de contacto para coordinar tu cita.">
+    <meta name="keywords" content="taller, cotización, enderezado, pintura automotriz, Alajuela, Desamparados">
+    <meta name="author" content="Taller MACA">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Taller MACA | Mi cotización</title>
+</head>
+
+<body>
+    <!-- Encabezado fijo, compartido por las 3 páginas -->
+    <header class="site-header">
+        <div class="container header-content">
+            <a class="logo" href="index.html">
+                <img src="img/logo-maca.jpg" alt="Logo de Taller MACA, enderezado y pintura">
+                <span>Taller MACA</span>
+            </a>
+
+            <!-- Checkbox oculto: controla el menú hamburguesa sin JavaScript -->
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="menu-button" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="catalogo.html">Catálogo</a></li>
+                    <li><a class="active-link" href="cotizacion.html">Mi cotización</a></li>
+                    <li><a href="index.html#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+
+            <!-- Sesión simulada con sessionStorage: solo en esta página -->
+            <div class="header-session-area">
+                <details class="session-dropdown">
+                    <summary id="headerUsuario" class="header-user">
+                        <span class="user-offline"></span>
+                        Usuario no logueado
+                    </summary>
+
+                    <div class="session-dropdown-content">
+                        <h3>Sesión de usuario</h3>
+                        <p>Simulación con sessionStorage.</p>
+
+                        <form id="formLoginSimulado" class="session-form">
+                            <div class="campo-form">
+                                <label for="loginNombre">Nombre</label>
+                                <input type="text" id="loginNombre" placeholder="Ej. Joseph Quesada">
+                            </div>
+
+                            <div class="campo-form">
+                                <label for="loginCorreo">Correo</label>
+                                <input type="email" id="loginCorreo" placeholder="ejemplo@correo.com">
+                            </div>
+
+                            <div class="session-buttons">
+                                <button type="submit" class="btn-primary">Ingresar</button>
+                                <button type="button" id="btnCerrarSesion" class="btn-secondary">Salir</button>
+                            </div>
+                        </form>
+
+                        <div id="usuarioActual" class="user-card">
+                            No hay usuario logueado.
+                        </div>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </header>
+
+    <!-- Ubicación actual dentro del sitio -->
+    <nav class="breadcrumb" aria-label="Ubicación actual">
+        <div class="container">
+            <a href="index.html">Inicio</a>
+            <span>Mi cotización</span>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Encabezado simple de la página -->
+        <section class="hero-simple">
+            <div class="container">
+                <h1>Mi cotización</h1>
+                <p>
+                    Revisá los servicios que agregaste, ajustá las cantidades y enviá tus datos de contacto.
+                    Te contactamos para coordinar la cita y confirmar el precio final en el taller.
+                </p>
+            </div>
+        </section>
+
+        <!-- Tabla con los servicios agregados desde el catálogo -->
+        <section>
+            <div class="container">
+                <div class="section-heading">
+                    <span class="section-badge">Tu selección</span>
+                    <h2>Servicios agregados</h2>
+                </div>
+
+                <div id="estadoSesionRequerida" class="empty-state oculto">
+                    <h3>Iniciá sesión para ver tu cotización</h3>
+                    <p>Usá el formulario de sesión simulada en la esquina superior derecha (nombre y correo) para continuar.</p>
+                </div>
+
+                <div id="estadoVacioCotizacion" class="empty-state oculto">
+                    <h3>Tu cotización está vacía</h3>
+                    <p>Todavía no agregaste servicios. Visitá el catálogo para elegir los que necesitás.</p>
+                    <a class="btn-secondary" href="catalogo.html">Ir al catálogo</a>
+                </div>
+
+                <div id="tablaCotizacionWrapper" class="tabla-cotizacion-wrapper">
+                    <table class="tabla-cotizacion">
+                        <thead>
+                            <tr>
+                                <th scope="col">Servicio</th>
+                                <th scope="col">Precio unitario</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">Subtotal</th>
+                                <th scope="col">Quitar</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cuerpoTablaCotizacion"></tbody>
+                    </table>
+                </div>
+
+                <div id="resumenCotizacion" class="cotizacion-resumen">
+                    <span>Total general</span>
+                    <strong id="totalCotizacion">&#8353;0</strong>
+                </div>
+
+                <div id="accionesCotizacion" class="cotizacion-acciones">
+                    <button type="button" class="btn-clear" id="btnVaciarCotizacion">Vaciar cotización</button>
+                    <a class="btn-link" href="catalogo.html">Seguir explorando el catálogo</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Formulario de contacto para enviar la solicitud -->
+        <section class="fondo-claro">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="section-badge">Último paso</span>
+                    <h2>Enviá tu solicitud</h2>
+                </div>
+
+                <div id="formularioSesionRequerida" class="empty-state oculto">
+                    <h3>Iniciá sesión para enviar tu solicitud</h3>
+                    <p>Usá el formulario de sesión simulada en la esquina superior derecha (nombre y correo) para continuar.</p>
+                </div>
+
+                <form id="formContacto" class="formulario-contacto oculto" novalidate>
+                    <div class="campo-form">
+                        <label for="campoNombre">Nombre completo</label>
+                        <input type="text" id="campoNombre" name="nombre" placeholder="Ej. Joseph Quesada">
+                        <small id="errorNombre" class="mensaje-error"></small>
+                    </div>
+
+                    <div class="campo-form">
+                        <label for="campoTelefono">Teléfono</label>
+                        <input type="tel" id="campoTelefono" name="telefono" placeholder="Ej. 6283-4714">
+                        <small id="errorTelefono" class="mensaje-error"></small>
+                    </div>
+
+                    <div class="campo-form">
+                        <label for="campoCorreo">Correo electrónico</label>
+                        <input type="email" id="campoCorreo" name="correo" placeholder="Ej. correo@ejemplo.com">
+                        <small id="errorCorreo" class="mensaje-error"></small>
+                    </div>
+
+                    <div class="campo-form">
+                        <label for="campoFecha">Fecha preferida</label>
+                        <input type="date" id="campoFecha" name="fecha">
+                        <small id="errorFecha" class="mensaje-error"></small>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Enviar solicitud</button>
+
+                    <p id="mensajeEnvio" class="mensaje-envio" aria-live="polite"></p>
+                </form>
+            </div>
+        </section>
+
+        <!-- Historial de solicitudes enviadas por el usuario logueado -->
+        <section>
+            <div class="container">
+                <div class="section-heading">
+                    <span class="section-badge">Tu historial</span>
+                    <h2>Solicitudes enviadas</h2>
+                </div>
+
+                <div id="listaSolicitudesGuardadas" class="solicitudes-lista"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contacto">
+        <div class="container">
+            <div>
+                <h4>Taller MACA</h4>
+                <address>
+                    100mts oeste del Colypro<br>
+                    Alajuela, Desamparados<br>
+                    Tel: +506 6283-4714<br>
+                    landresch99@gmail.com
+                </address>
+            </div>
+
+            <div>
+                <h5>Enlaces</h5>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="catalogo.html">Catálogo de servicios</a></li>
+                    <li><a href="cotizacion.html">Mi cotización</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h5>Especialidad</h5>
+                <ul>
+                    <li>Enderezado de carrocería</li>
+                    <li>Pintura parcial y completa</li>
+                    <li>Pulido y preparación</li>
+                </ul>
+            </div>
+
+            <div class="footer-bottom">
+                <small>&copy; 2026 Taller MACA. Proyecto académico — ISW-521 Programación en Ambiente Web I.</small>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/cotizacionStorage.js"></script>
+    <script src="js/sesion.js"></script>
+    <script src="js/cotizacion.js"></script>
+</body>
+
+</html>

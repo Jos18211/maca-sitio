@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Taller MACA: enderezado y pintura automotriz en Desamparados, Alajuela. Consultá el catálogo de servicios y armá tu cotización en línea.">
+    <meta name="keywords" content="taller, enderezado, pintura automotriz, Alajuela, Desamparados, cotización">
+    <meta name="author" content="Taller MACA">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Taller MACA | Inicio</title>
+</head>
+
+<body>
+    <!-- Encabezado fijo, compartido por las 3 páginas -->
+    <header class="site-header">
+        <div class="container header-content">
+            <a class="logo" href="index.html">
+                <img src="img/logo-maca.jpg" alt="Logo de Taller MACA, enderezado y pintura">
+                <span>Taller MACA</span>
+            </a>
+
+            <!-- Checkbox oculto: controla el menú hamburguesa sin JavaScript -->
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="menu-button" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <nav class="main-nav">
+                <ul>
+                    <li><a class="active-link" href="index.html">Inicio</a></li>
+                    <li><a href="catalogo.html">Catálogo</a></li>
+                    <li><a href="cotizacion.html">Mi cotización</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Ubicación actual dentro del sitio -->
+    <nav class="breadcrumb" aria-label="Ubicación actual">
+        <div class="container">
+            <a href="index.html">Inicio</a>
+            <span>Inicio</span>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Sección principal: presenta el sitio y dirige a la solución -->
+        <section class="hero">
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <span class="hero-badge">Desamparados, Alajuela</span>
+                    <h1>Enderezado y pintura sin sorpresas en el precio</h1>
+                    <p>
+                        Taller MACA repara y pinta vehículos desde hace más de 30 años. Este sitio te permite
+                        revisar los servicios disponibles, ver precios estimados y armar tu propia cotización
+                        antes de visitarnos.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="btn-primary" href="catalogo.html">Ver catálogo de servicios</a>
+                        <a class="btn-link" href="#como-funciona">Cómo funciona</a>
+                    </div>
+                </div>
+
+                <div class="hero-image">
+                    <figure>
+                        <img src="img/terminado2.jpg" alt="Vehículo con pintura terminada, acabado brillante, en Taller MACA">
+                        <figcaption>Pintura completa terminada en Taller MACA.</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- Problema real, público objetivo y propuesta de solución -->
+        <section id="problema">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="section-badge">Por qué este sitio</span>
+                    <h2>El problema que resolvemos</h2>
+                </div>
+
+                <div class="problema-grid">
+                    <article class="problema-card">
+                        <span class="icono">!</span>
+                        <h3>El problema</h3>
+                        <p>
+                            Para saber cuánto cuesta enderezar una puerta o pintar un carro completo, normalmente
+                            hay que llamar o visitar el taller en persona. No hay forma de comparar servicios
+                            ni precios estimados desde la casa antes de decidir.
+                        </p>
+                    </article>
+
+                    <article class="problema-card">
+                        <span class="icono">?</span>
+                        <h3>¿Para quién es?</h3>
+                        <p>
+                            Personas dueñas de vehículos en Alajuela y alrededores que necesitan reparación de
+                            carrocería, pintura parcial o completa, y quieren tener una idea clara del costo
+                            antes de acercarse al taller.
+                        </p>
+                    </article>
+
+                    <article class="problema-card">
+                        <span class="icono">&#10003;</span>
+                        <h3>Qué resuelve este sitio</h3>
+                        <p>
+                            Un catálogo de servicios con precios estimados, buscable y filtrable, donde se puede
+                            armar una cotización propia, revisarla, ajustarla y enviarla al taller sin tener que
+                            llamar primero.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Flujo de uso del sitio -->
+        <section id="como-funciona" class="fondo-claro">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="section-badge">Flujo de uso</span>
+                    <h2>Cómo funciona</h2>
+                </div>
+
+                <div class="pasos-grid">
+                    <div class="paso">
+                        <h3>Explorá el catálogo</h3>
+                        <p>Buscá y filtrá los servicios por categoría o estado según lo que necesita tu carro.</p>
+                    </div>
+                    <div class="paso">
+                        <h3>Armá tu cotización</h3>
+                        <p>Agregá los servicios que te interesan y ajustá las cantidades; el total se calcula solo.</p>
+                    </div>
+                    <div class="paso">
+                        <h3>Enviá tu solicitud</h3>
+                        <p>Completá tus datos de contacto y enviala. Te contactamos para coordinar la cita.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contenido dinámico cargado desde data/servicios.json -->
+        <section class="destacados-section">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="section-badge">Cargado desde JSON</span>
+                    <h2>Trabajos más solicitados</h2>
+                </div>
+
+                <p id="mensajeDestacados" class="estado-carga">Cargando servicios destacados...</p>
+
+                <div id="contenedorDestacados" class="tarjetas-grid"></div>
+            </div>
+        </section>
+
+        <!-- Ubicación real del taller (Google Maps JavaScript API) -->
+        <section id="ubicanos" class="fondo-claro">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="section-badge">Cómo llegar</span>
+                    <h2>Ubícanos</h2>
+                    <p>Taller MACA está en Desamparados, Alajuela, 100 metros al oeste del Colypro.</p>
+                </div>
+
+                <div id="mapaTaller" class="mapa-taller" role="application"
+                    aria-label="Mapa con la ubicación de Taller MACA"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contacto">
+        <div class="container">
+            <div>
+                <h4>Taller MACA</h4>
+                <address>
+                    100mts oeste del Colypro<br>
+                    Alajuela, Desamparados<br>
+                    Tel: +506 6283-4714<br>
+                    landresch99@gmail.com
+                </address>
+            </div>
+
+            <div>
+                <h5>Enlaces</h5>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="catalogo.html">Catálogo de servicios</a></li>
+                    <li><a href="cotizacion.html">Mi cotización</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h5>Especialidad</h5>
+                <ul>
+                    <li>Enderezado de carrocería</li>
+                    <li>Pintura parcial y completa</li>
+                    <li>Pulido y preparación</li>
+                </ul>
+            </div>
+
+            <div class="footer-bottom">
+                <small>&copy; 2026 Taller MACA. Proyecto académico — ISW-521 Programación en Ambiente Web I.</small>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/inicio.js"></script>
+    <script src="js/mapa.js"></script>
+    <!-- Restringir esta key por referente HTTP en Google Cloud Console antes de publicar el sitio -->
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5hj9dU_g2YoD1Dx0kQ0eboJi_RGJoga0&callback=inicializarMapa&v=weekly&loading=async"></script>
+</body>
+
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Catálogo de servicios de Taller MACA: enderezado, pintura y pulido en Desamparados, Alajuela. Filtrá por categoría, estado o buscá por nombre y armá tu cotización.">
+    <meta name="keywords" content="taller, catálogo, enderezado, pintura automotriz, Alajuela, Desamparados, cotización">
+    <meta name="author" content="Taller MACA">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Taller MACA | Catálogo</title>
+</head>
+
+<body>
+    <!-- Encabezado fijo, compartido por las 3 páginas -->
+    <header class="site-header">
+        <div class="container header-content">
+            <a class="logo" href="index.html">
+                <img src="img/logo-maca.jpg" alt="Logo de Taller MACA, enderezado y pintura">
+                <span>Taller MACA</span>
+            </a>
+
+            <!-- Checkbox oculto: controla el menú hamburguesa sin JavaScript -->
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="menu-button" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a class="active-link" href="catalogo.html">Catálogo</a></li>
+                    <li><a href="cotizacion.html">Mi cotización</a></li>
+                    <li><a href="index.html#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Ubicación actual dentro del sitio -->
+    <nav class="breadcrumb" aria-label="Ubicación actual">
+        <div class="container">
+            <a href="index.html">Inicio</a>
+            <span>Catálogo</span>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Encabezado simple de la página -->
+        <section class="hero-simple">
+            <div class="container">
+                <h1>Catálogo de servicios</h1>
+                <p>
+                    Buscá, filtrá y agregá a tu cotización los servicios de enderezado, pintura, pulido,
+                    soldadura y preparación que necesita tu vehículo. Los precios son estimados y están
+                    sujetos a valoración previa en el taller.
+                </p>
+            </div>
+        </section>
+
+        <!-- Catálogo: filtros + galería de servicios cargados desde JSON -->
+        <section>
+            <div class="container">
+                <div class="filtros-panel">
+                    <div class="filtro-grupo">
+                        <label for="filtroCategoria">Categoría</label>
+                        <select id="filtroCategoria" name="categoria">
+                            <option value="todas">Todas las categorías</option>
+                            <option value="Pintura">Pintura</option>
+                            <option value="Pulido">Pulido</option>
+                            <option value="Soldadura">Soldadura</option>
+                            <option value="Enderezado">Enderezado</option>
+                            <option value="Preparación">Preparación</option>
+                        </select>
+                    </div>
+
+                    <div class="filtro-grupo">
+                        <label for="filtroEstado">Estado</label>
+                        <select id="filtroEstado" name="estado">
+                            <option value="todos">Todos los estados</option>
+                            <option value="disponible">Disponible</option>
+                            <option value="alta demanda">Alta demanda</option>
+                        </select>
+                    </div>
+
+                    <div class="filtro-grupo">
+                        <label for="filtroBuscador">Buscar</label>
+                        <input type="text" id="filtroBuscador" name="buscador"
+                            placeholder="Nombre o descripción del servicio...">
+                    </div>
+
+                    <button type="button" class="btn-clear" id="btnLimpiarFiltros">Limpiar filtros</button>
+                </div>
+
+                <p id="mensajeResultados" class="estado-carga">Cargando servicios...</p>
+
+                <div id="contenedorCatalogo" class="tarjetas-grid"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contacto">
+        <div class="container">
+            <div>
+                <h4>Taller MACA</h4>
+                <address>
+                    100mts oeste del Colypro<br>
+                    Alajuela, Desamparados<br>
+                    Tel: +506 6283-4714<br>
+                    landresch99@gmail.com
+                </address>
+            </div>
+
+            <div>
+                <h5>Enlaces</h5>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="catalogo.html">Catálogo de servicios</a></li>
+                    <li><a href="cotizacion.html">Mi cotización</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h5>Especialidad</h5>
+                <ul>
+                    <li>Enderezado de carrocería</li>
+                    <li>Pintura parcial y completa</li>
+                    <li>Pulido y preparación</li>
+                </ul>
+            </div>
+
+            <div class="footer-bottom">
+                <small>&copy; 2026 Taller MACA. Proyecto académico — ISW-521 Programación en Ambiente Web I.</small>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/cotizacionStorage.js"></script>
+    <script src="js/catalogo.js"></script>
+</body>
+
+</html>
